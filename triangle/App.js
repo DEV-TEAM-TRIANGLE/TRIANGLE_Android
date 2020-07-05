@@ -5,11 +5,16 @@ import { Text, View } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { NavigationContainer } from '@react-navigation/native';
+import Home from './Screens/Home';
+import Mypage from './Screens/Mypage';
+import Report from './Screens/Report';
+import Search from './Screens/Search';
+import Writing from './Screens/Writing';
 
 function HomeScreen() {
   return (
     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>Home!</Text>
+      <Home />
     </View>
   );
 }
@@ -17,7 +22,7 @@ function HomeScreen() {
 function SearchScreen() {
   return (
     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>Search!</Text>
+      <Search />
     </View>
   );
 }
@@ -25,7 +30,7 @@ function SearchScreen() {
 function WritingScreen() {
   return (
     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>Writing!</Text>
+      <Writing />
     </View>
   );
 }
@@ -33,7 +38,7 @@ function WritingScreen() {
 function ReportScreen() {
   return (
     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>Report!</Text>
+      <Report />
     </View>
   );
 }
@@ -41,7 +46,7 @@ function ReportScreen() {
 function MypageScreen() {
   return (
     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>Mypage!</Text>
+      <Mypage />
     </View>
   );
 }

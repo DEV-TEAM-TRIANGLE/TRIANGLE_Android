@@ -5,22 +5,28 @@ import {
     StyleSheet,
     Dimensions,
     Button,
+    TouchableOpacity,
+    Switch,
     } from 'react-native';
-
 const {width, height} = Dimensions.get("window");
 
-class Writing extends Component{
-    render(){
+export default class Writing extends Component{
+    state = {
+        isEnabled: false,
+        setIsEnabled: false
+    }
+    render(){    
+        const {isEnabled, setIsEnabled} = this.state;
         return (
             <View style={style.container}>
                 <View style={style.bar}>
                     <View>
                     </View>
                     <View style={style.actions}>
-                        <View>
+                        <View style = {{marginLeft : 270}}>
                             <Button onPress = {() => alert('작성중인 회고가 임시 저장되었습니다.')} title='저장' color='#1e22af' />
                         </View>
-                        <View>
+                        <View style = {{paddingRight : 15}}>
                             <Button onPress = {() => alert('회고 작성이 완료되었습니다.')} title='완료' color='#1e22af' />
                         </View>
                     </View>
@@ -28,11 +34,33 @@ class Writing extends Component{
                 <View style={style.motto}>
                     <Text style={style.mottoText}>사람의 마음을 울리는 컨텐츠 크리에이터가 되자 ✨ </Text>
                 </View>
+                <View style = {style.secret}>
+                    <View>
+                        <Text style ={style.secretText}>비밀글 설정</Text>
+                    </View>
+                    <View style = {{width : 47}}>
+                        <Switch
+                            style = {{marginLeft : 10, marginVertical : 3}}
+                            trackColor={{ false: "#d3d3d3", true: "#1e22af" }}
+                            thumbColor={isEnabled ? "white" : "white"}
+                            ios_backgroundColor="#d3d3d3"
+                            onValueChange={this._toggleSwitch}
+                            value={isEnabled}
+                        />
+                    </View>
+                </View> 
             </View>
         );
     }
+    _toggleSwitch = () => {    // 비밀글 스위치 누르면 상태 변경하는 함수
+        this.setState(prevState => {
+            return{
+                setIsEnabled: !prevState.setIsEnabled,
+                isEnabled: !prevState.isEnabled
+            }
+        })
+    };
 }
-export default Writing;
 
 const style = StyleSheet.create({
     container: {
@@ -45,7 +73,6 @@ const style = StyleSheet.create({
     },
     actions: {
         flexDirection : 'row',
-        justifyContent: "flex-end",
     },
     motto: {
         height : 36,
@@ -55,9 +82,9 @@ const style = StyleSheet.create({
             ios: {
                 shadowColor: "black",
                 shadowOpacity: 0.08,
-                shadowRadius: 5,
+                shadowRadius: 3,
                 shadowOffset: {
-                    height: 6
+                    height: 4
                 }
             },
             android: {
@@ -69,6 +96,17 @@ const style = StyleSheet.create({
         paddingLeft : 15,
         fontSize : 14,
         fontWeight : 'bold',
+    },
+    secret: {
+        height : 36, 
+        flexDirection: 'row', 
+        justifyContent : "center",
+    },
+    secretText: {
+        fontSize : 12, 
+        color : '#505050',
+        paddingLeft : 237,
+        paddingVertical : 11, //제플린과 다름
     }
 
 })

@@ -7,6 +7,7 @@ import {
     Button,
     TouchableOpacity,
     Switch,
+    TextInput,
     } from 'react-native';
 const {width, height} = Dimensions.get("window");
 
@@ -48,6 +49,12 @@ export default class Writing extends Component{
                             value={isEnabled}
                         />
                     </View>
+                </View>
+                <View style ={{height : 41, flexDirection : 'row', alignItems : 'center',}}>
+                    <Text style ={{fontSize : 24, marginLeft : 16}}>Day</Text>
+                </View>
+                <View style ={style.day}>
+                    <TextInput style ={{fontSize : 16, marginLeft : 16, color : '#505050'}} defaultValue ="오늘 무엇을 했는지 기록해주세요 !" clearTextOnFocus = {true}></TextInput>
                 </View> 
             </View>
         );
@@ -107,6 +114,25 @@ const style = StyleSheet.create({
         color : '#505050',
         paddingLeft : 237,
         paddingVertical : 11, //제플린과 다름
-    }
+    },
+    day: {
+        height: 119,
+        borderBottomLeftRadius : 15,
+        borderBottomRightRadius : 15,
+        backgroundColor : "white",
+        ...Platform.select({
+            ios: {
+                shadowColor: "black",
+                shadowOpacity: 0.15,
+                shadowRadius: 5,
+                shadowOffset: {
+                    height: 8
+                }
+            },
+            android: {
+                elevation: 5,
+            }
+        })
+    },
 
 })
